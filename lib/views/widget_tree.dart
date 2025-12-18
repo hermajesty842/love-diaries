@@ -4,8 +4,10 @@ import 'package:love_diaries/data/notifiers.dart';
 import 'package:love_diaries/views/pages/home_page.dart';
 import 'package:love_diaries/views/pages/profile_page.dart';
 import 'package:love_diaries/views/pages/settings_page.dart';
+import 'package:love_diaries/views/pages/welcome_page.dart';
 
 import 'package:love_diaries/views/widgets/navbar_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage()];
 
@@ -26,8 +28,10 @@ class _WidgetTreeState extends State<WidgetTree> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async{
               isdarkmodenotifier.value = !isdarkmodenotifier.value;
+              final SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('kconstants.thememodekey',isdarkmodenotifier.value);            
             },
             icon: ValueListenableBuilder(
               valueListenable: isdarkmodenotifier,
@@ -37,12 +41,12 @@ class _WidgetTreeState extends State<WidgetTree> {
             ),
           ),
           IconButton(
-            onPressed: () {
+            onPressed: () {          
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SettingsPage();
+                    return SettingsPage(title: "Settings Page");
                   },
                 ),
               );
@@ -55,7 +59,16 @@ class _WidgetTreeState extends State<WidgetTree> {
         child: Column(
           children: [
             DrawerHeader(child: Text("More details")),
-            ListTile(title: Text("log out")),
+            ListTile(title: Text("log out"),onTap: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return WelcomePage();
+                  },
+                ),
+              );
+            },),
           ],
         ),
       ),

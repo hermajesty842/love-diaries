@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:love_diaries/views/widgets/container_widget.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,10 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      ("assets/images/love.webp"),
-      height: double.infinity,
-      fit: BoxFit.cover,
-    );
+    return ContainerWidget();
   }
 }
