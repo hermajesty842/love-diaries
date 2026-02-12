@@ -32,14 +32,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                HeroWidget(title: "login",),
+                HeroWidget(title: "login"),
                 SizedBox(height: 20.0),
                 TextField(
                   controller: controllerEmail,

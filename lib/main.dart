@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initthememode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool? repeat = prefs.getBool('kconstants.thememodekey');
-    isdarkmodenotifier.value = repeat ?? false;
+    isdarkmodenotifier.value=repeat ?? false; 
   }
 
   @override
@@ -34,7 +34,6 @@ class _MyAppState extends State<MyApp> {
       builder: (context, isdarkmode, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Love diaries',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 112, 90, 146),

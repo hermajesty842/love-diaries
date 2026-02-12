@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 onEditingComplete: () => setState(() {}),
               ),
-              SizedBox(height: 20.0),
+             SizedBox(height: 20.0),
               FilledButton(
                 onPressed: () {
                   onsignuppressed();

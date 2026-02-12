@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:love_diaries/data/notifiers.dart';
 import 'package:love_diaries/views/pages/home_page.dart';
+import 'package:love_diaries/views/pages/photos.dart';
 import 'package:love_diaries/views/pages/profile_page.dart';
 import 'package:love_diaries/views/pages/settings_page.dart';
 import 'package:love_diaries/views/pages/welcome_page.dart';
@@ -24,14 +25,20 @@ class _WidgetTreeState extends State<WidgetTree> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title:Text('love diaries'),
+        centerTitle: true,
         actionsPadding: EdgeInsets.symmetric(horizontal: 10),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
-            onPressed: () async{
+            onPressed: () async {
               isdarkmodenotifier.value = !isdarkmodenotifier.value;
-              final SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('kconstants.thememodekey',isdarkmodenotifier.value);            
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              await prefs.setBool(
+                'kconstants.thememodekey',
+                isdarkmodenotifier.value,
+              );
             },
             icon: ValueListenableBuilder(
               valueListenable: isdarkmodenotifier,
@@ -41,7 +48,7 @@ class _WidgetTreeState extends State<WidgetTree> {
             ),
           ),
           IconButton(
-            onPressed: () {          
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -58,25 +65,34 @@ class _WidgetTreeState extends State<WidgetTree> {
       drawer: Drawer(
         child: Column(
           children: [
-            DrawerHeader(child: Text("More details")),
-            ListTile(title: Text("log out"),onTap: () {
-               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return WelcomePage();
-                  },
-                ),
-              );
-            },),
+            DrawerHeader(
+              child: CircleAvatar(
+                radius: 40.0,
+                backgroundColor: Colors.blue,
+                backgroundImage: AssetImage('assets/images/heart.jpg'),
+              ),
+            ),
+            ListTile(
+              title: Text("log out"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return WelcomePage();
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
       bottomNavigationBar: NavbarWidget(
         currentIndex: currentIndex,
-        changeState: (index) {
+        changeState: (tappedicon) {
           setState(() {
-            currentIndex = index;
+            currentIndex = tappedicon;
           });
         },
       ),
@@ -85,7 +101,15 @@ class _WidgetTreeState extends State<WidgetTree> {
         splashColor: Colors.pink,
         child: FloatingActionButton(
           onPressed: () {
-            debugPrint("add a moment");
+            // debugPrint("add a moment");
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Photos();
+                },
+              ),
+            );
           },
           child: FaIcon(
             FontAwesomeIcons.handHoldingHeart,

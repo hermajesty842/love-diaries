@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HeroWidget extends StatelessWidget {
   const HeroWidget({super.key, required this.title,
-  this.nextpage
+  this.nextpage,
   });
 
   final String title;
@@ -11,9 +11,16 @@ class HeroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:() {
-        
-      } ,
+      onTap: nextpage!=null?() {
+         Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return nextpage!;
+          },
+        ),
+      );
+      }:null,
       child: Stack (
         alignment: Alignment.center,
         children: [
