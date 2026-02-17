@@ -30,53 +30,23 @@ class _PhotosState extends State<Photos> {
   Widget build(BuildContext context) {
     TextEditingController? Controller;
     return Scaffold(
-      appBar: AppBar(title: Text("Add a memory")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              _image == null ? Text("No image selected",style: TextStyle(
-                fontSize:20.0,
-                color: CupertinoColors.systemGroupedBackground
-              ),) : Image.file(_image!),
+              // _image == null ? Text("No image selected",style: TextStyle(
+              //   fontSize:20.0,
+              //   color: CupertinoColors.systemGroupedBackground
+              // ),) : Image.file(_image!),
               GestureDetector(
                 onTap: _pickImageFromGallery,
-                child: Container(
-                  height: 50.0,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: ShaderMask(
-                    shaderCallback: (rect) => LinearGradient(
-                      colors: [Colors.deepPurple, Colors.blueAccent],
-                    ).createShader(rect),
-                    // TweenAnimationBuilder(
-                    //   duration: Duration(seconds: 1),
-                    //   tween: Tween<double>(begin: 0,end:0),
-                    //   builder: (BuildContext context, double value,child) {
-                    //     return Opacity(opacity: value,);
-                    //   },
-                    // ),
-                    child: Text(
-                      "Tap to select a photo",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
-                        color: Colors.amber,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 15.0),
+              child: 
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
                 onPressed: _pickImageFromGallery,
-                child: Text("add to diary"),
+                child: Text("Add to diary"),
+              ),
               ),
               SizedBox(height: 15.0),
               TextField(

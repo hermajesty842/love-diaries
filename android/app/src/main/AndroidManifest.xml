@@ -2,6 +2,8 @@
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permissions.RECORD_AUDIO"/>
+<uses-permission android:name="android.permissions.CAMERA"/>
     <application
         android:label="love_diaries"
         android:name="${applicationName}"

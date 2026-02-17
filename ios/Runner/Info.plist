@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+	    <key>NSSpeechRecognitionUsageDescription<key/>
+	    <string>we need this to let you speak to your diary<string/>
+		<key>NSMicrophoneUsageDesription<key/>
+		<string>we neeed microphone access access to record your voice<string/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Love Diaries needs access to your gallery to save your beautiful moments.</string>
 		<key>NSCameraUsageDescription</key>

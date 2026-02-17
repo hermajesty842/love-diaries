@@ -1,16 +1,18 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:love_diaries/data/notifiers.dart';
+import 'package:love_diaries/views/pages/calendar.dart';
 import 'package:love_diaries/views/pages/home_page.dart';
-import 'package:love_diaries/views/pages/photos.dart';
-import 'package:love_diaries/views/pages/profile_page.dart';
 import 'package:love_diaries/views/pages/settings_page.dart';
 import 'package:love_diaries/views/pages/welcome_page.dart';
-
-import 'package:love_diaries/views/widgets/navbar_widget.dart';
+import 'package:love_diaries/views/pages/photos.dart';
+// import 'package:love_diaries/views/widgets/Floatingbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:speech_to_text/speech_to_text.dart';
 
-List<Widget> pages = [HomePage(), ProfilePage()];
+List<Widget> pages = [HomePage(), Photos(),Calendar()];
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
@@ -20,12 +22,12 @@ class WidgetTree extends StatefulWidget {
 }
 
 class _WidgetTreeState extends State<WidgetTree> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text('love diaries'),
+        title: Text('love diaries'),
         centerTitle: true,
         actionsPadding: EdgeInsets.symmetric(horizontal: 10),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -88,35 +90,14 @@ class _WidgetTreeState extends State<WidgetTree> {
           ],
         ),
       ),
-      bottomNavigationBar: NavbarWidget(
-        currentIndex: currentIndex,
-        changeState: (tappedicon) {
-          setState(() {
-            currentIndex = tappedicon;
-          });
-        },
-      ),
-
-      floatingActionButton: InkWell(
-        splashColor: Colors.pink,
-        child: FloatingActionButton(
-          onPressed: () {
-            // debugPrint("add a moment");
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Photos();
-                },
-              ),
-            );
-          },
-          child: FaIcon(
-            FontAwesomeIcons.handHoldingHeart,
-            color: (Colors.pink),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: FloatingBar(
+      //   currentIndex: currentIndex,
+      //   changeState: (tappedicon) {
+      //     setState(() {
+      //       currentIndex = tappedicon;
+      //     });
+      //   },
+      // ),
 
       body: pages[currentIndex],
     );

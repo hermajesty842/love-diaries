@@ -15,31 +15,6 @@ class ContainerWidget extends StatelessWidget {
         child: Column(
           children: [
             HeroWidget(title: "LOVE DIARIES"),
-            // Lottie.asset(
-            //   "assets/lotties/love.json",
-            //   height: MediaQuery.of(context).size.height * 0.5,
-            // ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.all(50.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Basic layout",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.green,
-                        ),
-                      ),
-                      Text("content of this page"),
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:love_diaries/data/notifiers.dart';
-import 'package:love_diaries/views/pages/welcome_page.dart';
+// import 'package:love_diaries/views/pages/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:love_diaries/views/widgets/Floatingbar.dart';
+
 //import 'package:love_diaries/views/pages/homescreen.dart';
 void main() {
   runApp(const MyApp());
@@ -24,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   void initthememode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool? repeat = prefs.getBool('kconstants.thememodekey');
-    isdarkmodenotifier.value=repeat ?? false; 
+    isdarkmodenotifier.value = repeat ?? false; 
   }
 
   @override
@@ -41,7 +43,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
 
-          home: WelcomePage(),
+          home: FloatingBar(),
         );
       },
     );
