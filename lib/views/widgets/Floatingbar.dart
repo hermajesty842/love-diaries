@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:love_diaries/data/notifiers.dart';
+import 'package:love_diaries/views/pages/calendar.dart';
 import 'package:love_diaries/views/pages/home_page.dart';
+import 'package:love_diaries/views/pages/homescreen.dart';
+import 'package:love_diaries/views/pages/mydrawer.dart';
 import 'package:love_diaries/views/pages/photos.dart';
+import 'package:love_diaries/views/pages/profile_page.dart';
 import 'package:love_diaries/views/pages/settings_page.dart';
-import 'package:love_diaries/views/pages/welcome_page.dart';
+// import 'package:love_diaries/views/pages/mydrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FloatingBar extends StatefulWidget {
+class Floatingbar extends StatefulWidget {
+  const Floatingbar({super.key});
+
   @override
-  _FloatingBarState createState() => _FloatingBarState();
+  FloatingBarState createState() => FloatingBarState();
 }
 
-class _FloatingBarState extends State<FloatingBar>
+class FloatingBarState extends State<Floatingbar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -37,66 +43,40 @@ class _FloatingBarState extends State<FloatingBar>
     return Scaffold(
       appBar: AppBar(
         title: Text('Love diaries'),
-      actions: [
-        IconButton(
-          onPressed: () async {
-            isdarkmodenotifier.value = !isdarkmodenotifier.value;
-            final SharedPreferences prefs =
-                await SharedPreferences.getInstance();
-            await prefs.setBool(
-              'kconstants.thememodekey',
-              isdarkmodenotifier.value,
-            );
-          },
-          icon: ValueListenableBuilder(
-            valueListenable: isdarkmodenotifier,
-            builder: (context, isdarkmode, child) {
-              return Icon(isdarkmode ? Icons.dark_mode : Icons.light_mode);
+        actions: [
+          IconButton(
+            onPressed: () async {
+              isdarkmodenotifier.value = !isdarkmodenotifier.value;
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              await prefs.setBool(
+                'kconstants.thememodekey',
+                isdarkmodenotifier.value,
+              );
             },
-          ),
-        ),
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SettingsPage(title: "Settings Page");
-                },
-              ),
-            );
-          },
-          icon: Icon(Icons.settings),
-        ),
-      ],
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(
-              child: CircleAvatar(
-                radius: 40.0,
-                backgroundColor: Colors.blue,
-                backgroundImage: AssetImage('assets/images/heart.jpg'),
-              ),
-            ),
-            ListTile(
-              title: Text("log out"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WelcomePage();
-                    },
-                  ),
-                );
+            icon: ValueListenableBuilder(
+              valueListenable: isdarkmodenotifier,
+              builder: (context, isdarkmode, child) {
+                return Icon(isdarkmode ? Icons.dark_mode : Icons.light_mode);
               },
             ),
-          ],
-        ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingsPage(title: "Settings Page");
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.settings),
+          ),
+        ],
       ),
-      
+      drawer: Mydrawer(),
       body: _getPage(_currentIndex),
       // Floating the bar manually
       bottomNavigationBar: Padding(
@@ -114,11 +94,16 @@ class _FloatingBarState extends State<FloatingBar>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
+                icon: Icon(Icons.home),
+                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+                onPressed: () => setState(() => _currentIndex = 0),
+              ),
+              IconButton(
                 icon: Icon(
                   Icons.calendar_today,
-                  color: _currentIndex == 0 ? Colors.blue : Colors.grey,
+                  color: _currentIndex == 1 ? Colors.blue : Colors.grey,
                 ),
-                onPressed: () => setState(() => _currentIndex = 0),
+                onPressed: () => setState(() => _currentIndex = 1),
               ),
               // The Pulsating Add Button
               ScaleTransition(
@@ -127,17 +112,24 @@ class _FloatingBarState extends State<FloatingBar>
                 ),
                 child: FloatingActionButton(
                   elevation: 0,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.pink,
                   child: Icon(Icons.add),
-                  onPressed: () => setState(() => _currentIndex = 1),
+                  onPressed: () => setState(() => _currentIndex = 2),
                 ),
               ),
               IconButton(
                 icon: Icon(
                   Icons.photo_library,
-                  color: _currentIndex == 2 ? Colors.blue : Colors.grey,
+                  color: _currentIndex == 3 ? Colors.blue : Colors.grey,
                 ),
-                onPressed: () => setState(() => _currentIndex = 2),
+                onPressed: () => setState(() => _currentIndex = 3),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.person_2_outlined,
+                  color: _currentIndex == 4 ? Colors.blue : Colors.grey,
+                ),
+                onPressed: () => setState(() => _currentIndex = 4),
               ),
             ],
           ),
@@ -147,8 +139,10 @@ class _FloatingBarState extends State<FloatingBar>
   }
 
   Widget _getPage(int index) {
-    if (index == 0) return Center(child: Text("Calendar Page"));
-    if (index == 1) return HomePage();
-    return Photos();
+    if (index == 0) return Homescreen();
+    if (index == 1) return Calendar();
+    if (index == 2) return HomePage();
+    if (index == 3) return Photos();
+    return ProfilePage();
   }
 }

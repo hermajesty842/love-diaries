@@ -1,7 +1,7 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:love_diaries/views/pages/welcome_page.dart';
+
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -15,23 +15,27 @@ class _HomescreenState extends State<Homescreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => WelcomePage()),
-      );
-    });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
         Container(
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage("assets/images/background.jpg"),fit: BoxFit.cover)
+            image: 
+            DecorationImage(image: 
+            AssetImage("assets/images/background.jpg"),fit: BoxFit.cover)
           ),
         ),
-        Center(child: Image.asset('cool.jpg',width: 180,),),
+        Center(child:Text("Collecting moments,cherishing us",
+        style:TextStyle(
+          color:Colors.purple,
+          fontSize:50,
+          letterSpacing:2.0,
+          fontWeight: FontWeight.w400,
+        ),
+        ),),
 
         Align(
           alignment:Alignment.bottomCenter,
@@ -40,7 +44,7 @@ class _HomescreenState extends State<Homescreen> {
               "Love diaries",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 14,
+                fontSize: 30,
                 letterSpacing: 2.0,
                 fontWeight: FontWeight.w300,
               ),
