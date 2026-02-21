@@ -17,19 +17,15 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("wigdet.title")),
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        title: Text("Settings page")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DropdownButton(
-                items: [
-                  DropdownMenuItem(child: Text("key features 2")),
-                ],
-                onChanged: (value) {},
-              ),
               TextField(
                 controller: controller,
                 decoration: InputDecoration(border: OutlineInputBorder()),

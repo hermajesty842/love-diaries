@@ -28,14 +28,20 @@ class _HomescreenState extends State<Homescreen> {
             AssetImage("assets/images/background.jpg"),fit: BoxFit.cover)
           ),
         ),
-        Center(child:Text("Collecting moments,cherishing us",
+        Positioned(
+          top: 20,
+          left: 0,
+          right: 0,
+          child: Center(child:Text("Collecting moments,cherishing us",
         style:TextStyle(
-          color:Colors.purple,
-          fontSize:50,
+          color:Colors.orange,
+          fontSize:20,
           letterSpacing:2.0,
           fontWeight: FontWeight.w400,
         ),
-        ),),
+        ),
+        ),
+        ),
 
         Align(
           alignment:Alignment.bottomCenter,
@@ -43,9 +49,9 @@ class _HomescreenState extends State<Homescreen> {
             child: Text(
               "Love diaries",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.blue,
                 fontSize: 30,
-                letterSpacing: 2.0,
+                //letterSpacing: 2.0,
                 fontWeight: FontWeight.w300,
               ),
             ),

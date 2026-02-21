@@ -42,6 +42,7 @@ class FloatingBarState extends State<Floatingbar>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
         title: Text('Love diaries'),
         actions: [
           IconButton(

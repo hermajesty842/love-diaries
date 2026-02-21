@@ -40,10 +40,7 @@ class _MyAppState extends State<MyApp> {
               brightness: isdarkmode ? Brightness.dark : Brightness.light,
             ),
           ),
-
           home: Floatingbar(),
-          
-
         );
       },
     );
