@@ -3,7 +3,15 @@
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.CAMERA"/>
 <uses-permission android:name="android.permissions.RECORD_AUDIO"/>
-<uses-permission android:name="android.permissions.CAMERA"/>
+<uses-permission android:name="android.permissions.INTERNET"/>
+<uses-permission android:name="android.permissions.BLUETOOTH"/>
+<uses-permission android:name="android.permissions.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permissions.BLUETOOTH_CONNECT"/>
+<queries>
+    <intent>
+          <action android:name="android.speech.RecognitionService"/>
+     </intent>
+</queries>
     <application
         android:label="love_diaries"
         android:name="${applicationName}"
@@ -36,6 +44,12 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <queries>
+       <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="https"/>
+        </intent>
+      </queries>    
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
          https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.

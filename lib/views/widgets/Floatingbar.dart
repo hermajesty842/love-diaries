@@ -12,10 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Floatingbar extends StatefulWidget {
   const Floatingbar({super.key});
-
-  @override
+@override
   FloatingBarState createState() => FloatingBarState();
 }
+
 
 class FloatingBarState extends State<Floatingbar>
     with SingleTickerProviderStateMixin {

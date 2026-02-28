@@ -23,11 +23,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   void initspeech() async {
-    await speechToText.initialize();
-    setState(() {});
+    bool isAvailable = await speechToText.initialize(
+      onStatus: (status) => debugPrint('status:$status'),
+      onError: (errorNotification) => debugPrint('Error:$errorNotification'),
+    );
+    if (isAvailable) {
+      setState(() {});
+    } else {
+      debugPrint("speech recognition not available");
+    }
   }
 
   void startlistening() async {
+    if (!speechToText.isAvailable) {
+      debugPrint("speech is not initialized yet");
+      return;
+    }
     await speechToText.listen(
       onResult: (result) {
         setState(() {
@@ -71,11 +82,14 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          islistening ? stoplistening() : startlistening();
-          // ignore: unused_label
-          backgroundColor:
-          islistening ? Colors.red : Colors.blue;
+          if (speechToText.isListening) {
+            stoplistening();
+          } else {
+            startlistening();
+          }
         },
+        backgroundColor: islistening ? Colors.red : Colors.blue,
+
         child: FaIcon(FontAwesomeIcons.microphone, color: (Colors.pink)),
       ),
     );
