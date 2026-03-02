@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -10,7 +11,7 @@ class Photos extends StatefulWidget {
 }
 
 class _PhotosState extends State<Photos> {
-  File? _image;
+  File? image;
   TextEditingController controller = TextEditingController();
   final picker = ImagePicker();
 
@@ -20,7 +21,7 @@ class _PhotosState extends State<Photos> {
 
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path);
+        image = File(pickedFile.path);
       });
     }
   }
@@ -34,20 +35,23 @@ class _PhotosState extends State<Photos> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              // _image == null ? Text("No image selected",style: TextStyle(
-              //   fontSize:20.0,
-              //   color: CupertinoColors.systemGroupedBackground
-              // ),) : Image.file(_image!),
-              GestureDetector(
-                onTap: _pickImageFromGallery,
-              child: 
-              ElevatedButton(
+               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
                 onPressed: _pickImageFromGallery,
                 child: Text("Add to diary"),
               ),
-              ),
+              SizedBox(height: 5.0),
+              image == null ? Text("select Image",style: TextStyle(
+                fontSize:20.0,
+                color: CupertinoColors.systemGroupedBackground
+              ),) 
+              : ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(8),
+                child: Image.file(image!)),          
               SizedBox(height: 15.0),
+              if (Image != null) (
+               TextButton(onPressed: ()=>setState(()=>image=null), child: Text('Remove image'))
+              ),
               TextField(
                 controller: Controller,
                 decoration: InputDecoration(
