@@ -29,15 +29,15 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ),
         Positioned(
-          top: 20,
-          left: 0,
-          right: 0,
-          child: Center(child:Text("Collecting moments,cherishing us",
+          child: Center(
+            child:
+            Text(
+              "Collecting moments,cherishing us ",
         style:TextStyle(
-          color:Colors.orange,
+          color:Color.fromARGB(255, 46, 7, 223),
           fontSize:20,
           letterSpacing:2.0,
-          fontWeight: FontWeight.w400,
+          fontFamily:'Pacifico',
         ),
         ),
         ),
@@ -51,7 +51,6 @@ class _HomescreenState extends State<Homescreen> {
               style: TextStyle(
                 color: Colors.blue,
                 fontSize: 30,
-                //letterSpacing: 2.0,
                 fontWeight: FontWeight.w300,
               ),
             ),

@@ -31,6 +31,10 @@ class _CalendarState extends State<Calendar> {
       onPageChanged: (focusedDay) {
         focusedDay = focusedDay;
       },
+     headerStyle: HeaderStyle(
+      formatButtonVisible: false,
+      titleCentered: true,
+     ),
     );
   }
 }

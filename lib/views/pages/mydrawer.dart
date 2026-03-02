@@ -33,7 +33,9 @@ class Mydrawer extends StatelessWidget {
         iconColor: Colors.orangeAccent,
         
       ),
-      DrawerItem(title: 'tags', icon: Icons.label_important_outline),
+      DrawerItem(
+        title: 'tags', 
+        icon: Icons.label_important_outline),
       DrawerItem(
         title: 'DiaryLock',
         icon: Icons.lock_outline,
@@ -63,7 +65,7 @@ class Mydrawer extends StatelessWidget {
           DrawerHeader(
             child: CircleAvatar(
               radius: 40.0,
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
               backgroundImage: AssetImage('assets/images/heart.jpg'),
             ),
           ),

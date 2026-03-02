@@ -7,7 +7,6 @@ import 'package:love_diaries/views/pages/mydrawer.dart';
 import 'package:love_diaries/views/pages/photos.dart';
 import 'package:love_diaries/views/pages/profile_page.dart';
 import 'package:love_diaries/views/pages/settings_page.dart';
-// import 'package:love_diaries/views/pages/mydrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Floatingbar extends StatefulWidget {
@@ -19,22 +18,22 @@ class Floatingbar extends StatefulWidget {
 
 class FloatingBarState extends State<Floatingbar>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  int _currentIndex = 0;
+  late AnimationController controller;
+  int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(milliseconds: 500),
     )..repeat(reverse: true);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -78,17 +77,16 @@ class FloatingBarState extends State<Floatingbar>
         ],
       ),
       drawer: Mydrawer(),
-      body: _getPage(_currentIndex),
-      // Floating the bar manually
+      body: getPage(currentIndex),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
         child: Container(
           height: 70,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(35),
             boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 2),
+              BoxShadow(color: Colors.black12, blurRadius: 30, spreadRadius: 2),
             ],
           ),
           child: Row(
@@ -96,41 +94,40 @@ class FloatingBarState extends State<Floatingbar>
             children: [
               IconButton(
                 icon: Icon(Icons.home),
-                color: _currentIndex == 0 ? Colors.blue : Colors.grey,
-                onPressed: () => setState(() => _currentIndex = 0),
+                color: currentIndex == 0 ? Colors.blue : Colors.grey,
+                onPressed: () => setState(() => currentIndex = 0),
               ),
               IconButton(
                 icon: Icon(
                   Icons.calendar_today,
-                  color: _currentIndex == 1 ? Colors.blue : Colors.grey,
+                  color: currentIndex == 1 ? Colors.blue : Colors.grey,
                 ),
-                onPressed: () => setState(() => _currentIndex = 1),
+                onPressed: () => setState(() => currentIndex = 1),
               ),
-              // The Pulsating Add Button
               ScaleTransition(
                 scale: Tween(begin: 1.0, end: 1.2).animate(
-                  CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+                  CurvedAnimation(parent: controller, curve: Curves.easeInOut),
                 ),
                 child: FloatingActionButton(
-                  elevation: 0,
+                  elevation:0,
                   backgroundColor: Colors.pink,
                   child: Icon(Icons.add),
-                  onPressed: () => setState(() => _currentIndex = 2),
+                  onPressed: () => setState(() => currentIndex = 2),
                 ),
               ),
               IconButton(
                 icon: Icon(
                   Icons.photo_library,
-                  color: _currentIndex == 3 ? Colors.blue : Colors.grey,
+                  color: currentIndex == 3 ? Colors.blue : Colors.grey,
                 ),
-                onPressed: () => setState(() => _currentIndex = 3),
+                onPressed: () => setState(() => currentIndex = 3),
               ),
               IconButton(
                 icon: Icon(
                   Icons.person_2_outlined,
-                  color: _currentIndex == 4 ? Colors.blue : Colors.grey,
+                  color: currentIndex == 4 ? Colors.blue : Colors.grey,
                 ),
-                onPressed: () => setState(() => _currentIndex = 4),
+                onPressed: () => setState(() => currentIndex = 4),
               ),
             ],
           ),
@@ -139,11 +136,11 @@ class FloatingBarState extends State<Floatingbar>
     );
   }
 
-  Widget _getPage(int index) {
-    if (index == 0) return Homescreen();
-    if (index == 1) return Calendar();
-    if (index == 2) return HomePage();
-    if (index == 3) return Photos();
+  Widget getPage(int currentIndex) {
+    if (currentIndex == 0) return Homescreen();
+    if (currentIndex == 1) return Calendar();
+    if (currentIndex == 2) return HomePage();
+    if (currentIndex == 3) return Photos();
     return ProfilePage();
   }
 }

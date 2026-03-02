@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initthememode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool? repeat = prefs.getBool('kconstants.thememodekey');
-    isdarkmodenotifier.value = repeat ?? false; 
+    isdarkmodenotifier.value = repeat ?? false;
   }
 
   @override
