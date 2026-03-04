@@ -43,15 +43,15 @@ class _PhotosState extends State<Photos> {
               SizedBox(height: 5.0),
               image == null ? Text("select Image",style: TextStyle(
                 fontSize:20.0,
-                color: CupertinoColors.systemGroupedBackground
+                color: const Color.fromARGB(255, 8, 8, 14)
               ),) 
               : ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(8),
                 child: Image.file(image!)),          
               SizedBox(height: 15.0),
-              if (Image != null) (
-               TextButton(onPressed: ()=>setState(()=>image=null), child: Text('Remove image'))
-              ),
+              (
+             TextButton(onPressed: ()=>setState(()=>image=null), child: Text('Remove image'))
+            ),
               TextField(
                 controller: Controller,
                 decoration: InputDecoration(
